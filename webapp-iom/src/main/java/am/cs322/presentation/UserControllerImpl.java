@@ -19,8 +19,8 @@ public class UserControllerImpl implements UserController {
 
 
     @GetMapping
-    public List<UserDTO>getAllUsers() {
-        return userService.getAllUsers();
+    public List<UserDTO>getUsers() {
+        return userService.getUsers();
     }
 
     @Override

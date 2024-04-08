@@ -16,20 +16,16 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-
     @Override
     public UserDTO createUser(String firstName, String lastName) {
         UserEntity user = userRepository.save(new UserEntity(firstName, lastName));
-        return new UserDTO(user.getFirstName() +" " +user.getLastName());
+        return new UserDTO(String.join(" ", user.getFirstName(), user.getLastName()));
     }
 
-    public List<UserDTO>getAllUsers() {
-        List<UserEntity> users  = userRepository.findAll();
-        // Using Java streams to transform UserEntity objects into UserDTO objects
-
-        return users.stream()
-                .map(userEntity -> {
-                    return new UserDTO(userEntity.getFirstName() +" " +userEntity.getLastName());
-                }).collect(Collectors.toList());
+    @Override
+    public List<UserDTO> getUsers() {
+        return userRepository.findAll().stream()
+                .map(user -> new UserDTO(String.join(" ", user.getFirstName(), user.getLastName())))
+                .collect(Collectors.toList());
     }
 }

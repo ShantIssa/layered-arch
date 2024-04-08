@@ -1,7 +1,7 @@
 package am.cs322;
 
 public interface TransactionService {
-    boolean createDebitAccount(Long user_id);
+    boolean initializeDebitAccount(Long user_id);
 
-    boolean createCreditAccount(Long user_id);
+    boolean initializeCreditAccount(Long user_id);
 }

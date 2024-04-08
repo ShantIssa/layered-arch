@@ -5,7 +5,7 @@ import am.cs322.presentation.modal.CreateTransactionRequest;
 
 public interface TransactionController {
 
-    String createCreditAccount(CreateTransactionRequest request);
+    String initializeCreditAccount(CreateTransactionRequest request);
 
-    String createDebitAccount(CreateTransactionRequest request);
+    String initializeDebitAccount(CreateTransactionRequest request);
 }

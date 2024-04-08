@@ -8,5 +8,5 @@ public interface UserService {
 
     public UserDTO createUser(String firstName, String lastName);
 
-    public List<UserDTO>getAllUsers();
+    public List<UserDTO>getUsers();
 }
