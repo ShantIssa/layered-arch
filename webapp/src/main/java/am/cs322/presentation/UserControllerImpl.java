@@ -17,12 +17,22 @@ public class UserControllerImpl implements UserController {
         this.userService = userService;
     }
 
-
+    /**
+     * Retrieves a list of all users.
+     *
+     * @return A list of UserDTO objects representing all users.
+     */
     @GetMapping
     public List<UserDTO>getUsers() {
         return userService.getUsers();
     }
 
+    /**
+     * Creates a new user based on the provided request body.
+     *
+     * @param request The CreateUserRequest containing the first and last name.
+     * @return The created UserDTO.
+     */
     @Override
     @PostMapping
     public UserDTO createUser(@RequestBody CreateUserRequest request) {
