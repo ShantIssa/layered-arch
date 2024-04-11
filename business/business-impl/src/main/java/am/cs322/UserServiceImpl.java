@@ -1,8 +1,11 @@
 package am.cs322;
 
-import am.cs322.model.User;
 import am.cs322.model.UserDTO;
+import am.cs322.model.UserEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -13,10 +16,16 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-
     @Override
     public UserDTO createUser(String firstName, String lastName) {
-        User createdUser = userRepository.save(new User(firstName, lastName));
-        return new UserDTO(createdUser.getFirstName() + " " + createdUser.getLastName());
+        UserEntity user = userRepository.save(new UserEntity(firstName, lastName));
+        return new UserDTO(String.join(" ", user.getFirstName(), user.getLastName()));
+    }
+
+    @Override
+    public List<UserDTO> getUsers() {
+        return userRepository.findAll().stream()
+                .map(user -> new UserDTO(String.join(" ", user.getFirstName(), user.getLastName())))
+                .collect(Collectors.toList());
     }
 }
